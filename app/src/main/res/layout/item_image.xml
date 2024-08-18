@@ -10,4 +10,12 @@
         android:scaleType="centerCrop"
         android:layout_margin="8dp"/>
 
+        <ImageView
+            android:id="@+id/delte"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/imageView"
+            android:src="@drawable/img"
+            android:layout_marginTop="-80dp"
+            />
 </RelativeLayout>
