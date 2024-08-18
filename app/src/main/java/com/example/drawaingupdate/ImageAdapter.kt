@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.drawaingupdate.Deletebyid
 import com.example.drawaingupdate.R
 
-class ImageAdapter(private val imageUris: List<Uri>, private val context: Context) :
+class ImageAdapter(var imageUris: List<Uri>, private val context: Context, val deletebyid: Deletebyid) :
     RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,10 +24,19 @@ class ImageAdapter(private val imageUris: List<Uri>, private val context: Contex
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val uri = imageUris[position]
         holder.imageView.setImageURI(uri)
+        holder.imageView.setOnClickListener {
+            deletebyid.deletebyid(imageUris[position])
+        }
+
     }
 
     override fun getItemCount(): Int {
         Log.e("TAG", "getItemCount: "+imageUris.size )
         return imageUris.size
     }
+    fun updateData(newImageUris: List<Uri>) {
+        this.imageUris = newImageUris
+        notifyDataSetChanged()
+    }
+
 }
